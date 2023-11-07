@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 export class NewsItems extends Component {
   render() {
-    let {title , description ,imgUrl ,newsUrl } = this.props
+    let {title , description ,imgUrl ,newsUrl , author , date} = this.props
     return (
       <div>
         <div className="card">
@@ -13,6 +13,7 @@ export class NewsItems extends Component {
             <p className="card-text">
               {description}...
             </p>
+            <p className="card-text"><small className="text-body-secondary">by {!author?"Unknown":author} on {new Date(date).toGMTString()}</small></p>
             <a href= {newsUrl} target="_blank" rel="noreferrer" className="btn btn-sm btn-primary">
               Read More
             </a>
@@ -30,4 +31,6 @@ NewsItems.propTypes = {
     description :PropTypes.string,
     imgUrl : PropTypes.string,
     newsUrl : PropTypes.string,
+    author :PropTypes.string,
+    date : PropTypes.string
 }

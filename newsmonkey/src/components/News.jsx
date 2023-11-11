@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 export class News extends Component {
   static defaultProps = {
     country: "in",
-    pageSize: 5,
+    pageSize: 6,
     category: "general",
   };
 
@@ -16,7 +16,7 @@ export class News extends Component {
     pageSize: PropTypes.number,
     apiKey: PropTypes.any,
     category: PropTypes.string,
-    setProgress : PropTypes.number
+    setProgress : PropTypes.func
   };
 
   constructor() {
@@ -36,7 +36,7 @@ export class News extends Component {
     let data = await fetch(url);
     let parsedData = await data.json();
     this.props.setProgress(50)
-    console.log(parsedData);
+    // console.log(parsedData);
     this.setState({
       articles: parsedData.articles,
       totalResults: parsedData.totalResults,
@@ -54,7 +54,7 @@ export class News extends Component {
     let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
-    console.log(parsedData);
+    // console.log(parsedData);
     this.setState({
       articles: this.state.articles.concat(parsedData.articles),
       totalResults: parsedData.totalResults,
@@ -77,7 +77,7 @@ export class News extends Component {
             <div className="row">
               {this.state.articles.map((e) => {
                 return (
-                  <div className="col-md-4" key={e.url}>
+                  <div className="col-md-4" key={e.url + Math.random()}>
                     <NewsItems
                       title={e.title ? e.title.slice(0, 40) : ""}
                       description={

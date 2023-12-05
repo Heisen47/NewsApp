@@ -22,3 +22,8 @@ A React-based news app that fetches and displays news articles with infinite scr
 
    ```bash
    git clone https://github.com/Heisen47/NewsApp
+
+## How it works 
+
+![news GIF](/news.gif)
+
